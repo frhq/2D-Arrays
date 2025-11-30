@@ -1,0 +1,64 @@
+import java.util.*;
+public class LabTask2 {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        int [][] matrix = new int[3][4];
+        int [] primesInRow = new int[3];
+        int primesInCol [] = new int[4];
+
+        System.out.println("Enter the integers of the matrix: ");
+         
+        for(int i=0 ; i<3 ; i++){
+            for(int j=0 ; j<4 ; j++){
+                matrix [i][j] = sc.nextInt();
+            }
+        }
+
+        //counting
+        for(int i = 0 ; i<3 ; i++){
+            for(int j =0 ; j<4;j++){
+                if(isPrime(matrix[i][j])){
+                    primesInRow[i]++;
+                    primesInCol[j]++;
+                }
+            }
+        }
+
+        // max in row
+        int maxRow = 0;
+        for (int i = 1; i < 3; i++) {
+            if (primesInRow[i] > primesInRow[maxRow]) {
+                maxRow = i;
+            }
+        }
+        // max in columns
+        int maxCol = 0;
+        for (int j= 1; j < 4; j++) {
+            if (primesInCol[j] > primesInCol[maxCol]) {
+                maxCol = j;
+            }
+        }
+        //display result
+        if (primesInRow[maxRow] > primesInCol[maxCol]) {
+            System.out.println("Row " + (maxRow + 1) + " has the most prime numbers: " + primesInRow[maxRow]);
+        } else if (primesInCol[maxCol] > primesInRow[maxRow]) {
+            System.out.println("Column " + (maxCol + 1) + " has the most prime numbers: " + primesInCol[maxCol]);
+        } else {
+            System.out.println("Both row " + (maxRow + 1) + " and column " + (maxCol + 1) +
+                    " have the same maximum number of primes: " + primesInRow[maxRow]);
+        }
+    }
+
+        public static boolean isPrime(int num){
+            if(num<=1) 
+                return false;
+            for(int i=2; i<=Math.sqrt(num); i++){
+                if(num%i == 0 )
+                    return false;
+            }
+            return true;
+        
+    }
+}
+        
