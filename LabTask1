@@ -1,0 +1,44 @@
+import java.util.Scanner;
+
+public class LabTask1 {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        int[][] matrix = new int[3][4];
+        int[] rowSum = new int[3];
+        int[] colSum = new int[4];
+
+        System.out.println("Enter the integers for a 3x4 matrix:");
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 4; j++) {
+                matrix[i][j] = sc.nextInt();
+            }
+        }
+
+        // Calculate sum of each row and column
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 4; j++) {
+                rowSum[i] += matrix[i][j];
+                colSum[j] += matrix[i][j];
+            }
+        }
+
+        // Find row with maximum sum
+        int maxRow = 0;
+        for (int i= 1; i < 3; i++) {
+            if (rowSum[i] > rowSum[maxRow]) {
+                maxRow = i;
+            }
+        }
+
+        // Find column with maximum sum
+        int maxCol = 0;
+        for (int j = 1; j < 4; j++) {
+            if (colSum[j] > colSum[maxCol]) {
+                maxCol = j;
+            }
+        }
+        System.out.println("Row " + (maxRow + 1) + " has the maximum sum: " + rowSum[maxRow]);
+        System.out.println("Column " + (maxCol + 1) + " has the maximum sum: " + colSum[maxCol]);
+    }
+}
